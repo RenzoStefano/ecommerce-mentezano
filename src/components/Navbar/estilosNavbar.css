@@ -1,0 +1,29 @@
+#idNavbar{
+    background-color: #1d78d2;
+    width: 100vw;
+    margin-top: 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+.btNav{
+    margin-left: 10px;  
+    padding: 5px;  
+    border: none;
+    background-color: white;
+    border-radius: 5px;    
+}
+
+#idDivButton{
+    
+    margin-top: 25px;
+    margin-left: 65%;
+    float: right;
+    flex-direction: row;
+}
+
+#idTitulo{
+    color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
