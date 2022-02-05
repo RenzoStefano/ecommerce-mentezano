@@ -12,12 +12,14 @@
     border: none;
     background-color: white;
     border-radius: 5px;    
+    width: 100px;
 }
 
 #idDivButton{
     
+    
     margin-top: 25px;
-    margin-left: 65%;
+    margin-left: 55%;
     float: right;
     flex-direction: row;
 }
