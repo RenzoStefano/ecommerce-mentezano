@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import './estilosCart.css'
 
 
-
-const CartWidget = (cantidad, imagen) => {
+const CartWidget = (cantidad) => {
 
     return (
-       <div>
-            <img src={imagen} alt='logoCart'></img>
-            <span>{cantidad = 10}</span>
-       </div> 
+       <>
+            <span className='cartText'>{cantidad = 10}</span>
+            <img src="/images/baseline_shopping_cart_black_24dp.png" alt='logoCart' className="cart"/>           
+       </> 
            
        
     )
