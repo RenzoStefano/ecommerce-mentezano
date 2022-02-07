@@ -1,11 +1,11 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import CartWidget from './components/ButtonCart/CartWidget';
+import CounterBtn from './components/CounterBtn/CounterBtn'
 function App() {
   return (
    <>
     <Navbar/>
-    
+    <CounterBtn></CounterBtn>
    </>
   );
 }

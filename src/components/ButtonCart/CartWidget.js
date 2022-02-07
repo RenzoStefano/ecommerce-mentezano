@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './estilosCart.css'
-
+import CounterBtn from '../CounterBtn/CounterBtn';
 
 const CartWidget = (cantidad) => {
 
