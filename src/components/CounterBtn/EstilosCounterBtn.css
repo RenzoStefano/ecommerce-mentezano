@@ -1,0 +1,8 @@
+.divBtnContador{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    flex-direction: column;    
+    width: 250px;
+    
+}

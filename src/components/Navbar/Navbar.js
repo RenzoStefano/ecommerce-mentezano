@@ -1,9 +1,16 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './estilosNavbar.css'
 import CartWidget from '../ButtonCart/CartWidget';
-//import cart from '/src/baseline_shopping_cart_black_24dp.png'
+import CounterBtn from '../CounterBtn/CounterBtn';
+import { useEffect } from 'react/cjs/react.development';
 
-const Navbar = () => {
+const Navbar = (valorCarrito) => {
+
+ 
+
+
+    console.log("cantidad de items: " + valorCarrito.valorCarrito)
+    
 
     return(
         <nav id="idNavbar">
@@ -17,8 +24,9 @@ const Navbar = () => {
                 <button className='btNav'>Laptops</button>
                 <button className='btNav'>Celulares</button>
                 <button className='btNav'>Tablets</button>
-                <CartWidget  />                
+               <CartWidget valorCarrito ={valorCarrito}/>               
             </div>
+            
         </nav>        
         
     )
