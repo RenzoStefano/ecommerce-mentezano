@@ -5,31 +5,17 @@ import { useEffect, useState } from 'react/cjs/react.development';
 
 
 const CartWidget = (valorCarrito) => {
-
-    //const [cant , setCant] = useState([])
-
-    var items = valorCarrito.valorCarrito.valorCarrito
-
-    useEffect(()=>{
-        //setCant(items)
-    },[])
-    
   
-    console.log(items)
-    
-   
-    
-    
-    
+    var items = valorCarrito.valorCarrito.valorCarrito
+         
     return (
        <>
             <span className='cartText'>{items}</span>
             <img src="/images/baseline_shopping_cart_black_24dp.png" alt='logoCart' className="cart"/>           
-          
        </> 
-           
-       
     )
 
 }
 export default CartWidget
+
+
