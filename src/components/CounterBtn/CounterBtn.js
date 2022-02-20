@@ -117,7 +117,7 @@ const CounterBtn = ({setValorCarrito, prod}) => {
                                     <td className='table-secondary'>{item.currency_id} {item.price}</td>
                                     <td className='table-secondary'>{item.domain_id}</td>
                                     <td className='table-secondary'>{item.available_quantity}</td>
-                                    <td className='table-secondary'><img src={item.thumbnail}/></td>
+                                    <td className='table-secondary'><img className="imgFetch" src={item.thumbnail}/></td>
                                     <td className='table-secondary'>
                                         <button type="button" class="btn btn-primary" onClick={()=> seleccionarProducto(item.id)}>Seleccionar</button>
                                     </td>
