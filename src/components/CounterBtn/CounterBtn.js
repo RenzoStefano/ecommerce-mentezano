@@ -80,7 +80,7 @@ const CounterBtn = ({setValorCarrito, prod}) => {
                 
         const found = productosGuardados.find(item => id === item.id )
         console.log("info found:" + found.id)
-        setStock(found.stock)      
+        setStock(found.available_quantity)      
         setElemento(productosGuardados.find(item => id === item.id ))
         console.log(elemtento)                 
     }
@@ -104,20 +104,26 @@ const CounterBtn = ({setValorCarrito, prod}) => {
                         <th className='table-secondary'>Imagen</th>
                         <th className='table-secondary'>Seleccionar</th>
                     </thead>
-                    <tbody>
+                    <tbody>                        
                         {
-                            productosGuardados.map(item => {
-                                return <tr key={item.id} className="table-info">
-                                    <td className='table-secondary'>{item.id}</td>
-                                    <td className='table-secondary'>{item.name}</td>
-                                    <td className='table-secondary'>{item.price}</td>
-                                    <td className='table-secondary'>{item.category}</td>
-                                    <td className='table-secondary'>{item.stock}</td>
-                                    <td className='table-secondary'></td>
+                            
+                            productosGuardados
+                            .slice(0, 5)
+                            .map(item => {
+                                
+                                    return <tr key={item.id} className="table-info">
+                                    <td className='table-secondary'>{item.id}</td> 
+                                    <td className='table-secondary'>{item.title}</td>
+                                    <td className='table-secondary'>{item.currency_id} {item.price}</td>
+                                    <td className='table-secondary'>{item.domain_id}</td>
+                                    <td className='table-secondary'>{item.available_quantity}</td>
+                                    <td className='table-secondary'><img src={item.thumbnail}/></td>
                                     <td className='table-secondary'>
                                         <button type="button" class="btn btn-primary" onClick={()=> seleccionarProducto(item.id)}>Seleccionar</button>
                                     </td>
                                 </tr>
+                                
+                                
                             })
                         }
                     </tbody>
@@ -125,7 +131,7 @@ const CounterBtn = ({setValorCarrito, prod}) => {
             </>      
         
             <h2> Seleccion de items: </h2>
-            <p>Stock {elemtento.name}  : {stock}</p>
+            <p>Stock {elemtento.title}  : {stock}</p>
             <p>Mensaje: <div class="alert alert-danger" role="alert"> {mensaje} para producto {elemtento.name}, cantidad de productos: {stock}</div></p>
             <p>Numero de items: {count}</p>
             <p>Cantidad: {cantidad}</p>
@@ -146,9 +152,9 @@ const CounterBtn = ({setValorCarrito, prod}) => {
                     
                          <tr>
                                 <td className='table-success'>{elemtento.id}</td>
-                                <td className='table-success'>{elemtento.name}</td>
+                                <td className='table-success'>{elemtento.title}</td>
                                 <td className='table-success'>{elemtento.price}</td>
-                                <td className='table-success'>{elemtento.category}</td>
+                                <td className='table-success'>{elemtento.domain_id}</td>
                                 <td className='table-success'>{cantidad}</td>
                         </tr>
                        
@@ -204,6 +210,32 @@ export default CounterBtn
 
 
 
-               
+           
+            
+
+
+
+
+
+
+
+
+
+
+
+
+            productosGuardados.map(item => {
+                                return <tr key={item.id} className="table-info">
+                                    <td className='table-secondary'>{item.id}</td> 
+                                    <td className='table-secondary'>{item.name}</td>
+                                    <td className='table-secondary'>{item.price}</td>
+                                    <td className='table-secondary'>{item.category}</td>
+                                    <td className='table-secondary'>{item.stock}</td>
+                                    <td className='table-secondary'></td>
+                                    <td className='table-secondary'>
+                                        <button type="button" class="btn btn-primary" onClick={()=> seleccionarProducto(item.id)}>Seleccionar</button>
+                                    </td>
+                                </tr>
+                            })
 
 */
