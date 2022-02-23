@@ -2,6 +2,10 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import CounterBtn from './components/CounterBtn/CounterBtn'
 import { useState, useEffect } from 'react';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import ItemDetail from './components/itemDetail/ItemDetail';
+import fetchItem from './components/FetchItem/fetchItem';
+
 function App() {
 
   
@@ -14,36 +18,38 @@ function App() {
 
   const [valorCarrito, setValorCarrito] = useState(0)    
   const [prod, setProd] = useState([])
-  useEffect(()=>{
-    
+  const [item, setItem] = useState()
+
+ //console.log(item.price)
+
+  useEffect(()=>{      
+   
     fetch('https://api.mercadolibre.com/sites/MLA/search?q=iphone')
     .then(response => {
       return response.json()
     })
     .then(res =>{
-      console.log(res)
+      //console.log(res)
       setProd(res.results)
     })
-
-
+    
 
     //uso este funcion para devolver el array productos
     //setProd(productos)
   },[])
 
-
-
-
-
-
    
   return (
    <>
-    <Navbar valorCarrito={valorCarrito} />
-    <CounterBtn setValorCarrito={setValorCarrito} prod = {prod}/>
-    
-    
-    
+      <BrowserRouter>
+          <Navbar valorCarrito={valorCarrito} /> 
+          <Routes >
+            <Route path='/'/>                
+            <Route path='/detail' element={<CounterBtn setValorCarrito={setValorCarrito} prod = {prod} setItem={setItem} />}/>
+            <Route path='/detail/:categoryId' element={<ItemDetail id={item} />}/>        
+          </Routes>
+          
+      </BrowserRouter>    
    </>
   );
 }

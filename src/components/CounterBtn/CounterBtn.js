@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './EstilosCounterBtn.css'
-import CartWidget from '../ButtonCart/CartWidget';
 import '../ButtonCart/estilosCart.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import {Link} from 'react-router-dom'
 
 
 /*
@@ -17,9 +17,10 @@ const productos =[
 
 
 
-const CounterBtn = ({setValorCarrito, prod}) => {
+const CounterBtn = ({setValorCarrito, prod, setItem}) => {
 
     const [producto, setProductos] = useState([])
+    const [encontrado, setEcontrado] = useState()
     
     useEffect (() =>{
         setProductos(prod)
@@ -42,6 +43,7 @@ const CounterBtn = ({setValorCarrito, prod}) => {
     const [stock, setStock] = useState(0)
     const [mensaje, setMensaje] = useState("")
     const [productosGuardados, setProductosGuardados] = useState([])
+    
 
 
 
@@ -59,19 +61,18 @@ const CounterBtn = ({setValorCarrito, prod}) => {
     }
 
 
-
-
-          const addItem = () =>{    
-          if(stock>= 1 && count >= 1 && count <= 10 && count<= stock ){
-            setLista([...lista, { id: lista.length, value: count}]) 
-            setStock(stock - count)                      
-          }else{              
-            setMensaje("No hay suficiente stock" )
-          }               
-      }
+        const addItem = () =>{    
+            if(stock>= 1 && count >= 1 && count <= 10 && count<= stock ){
+                setLista([...lista, { id: lista.length, value: count}]) 
+                setStock(stock - count)                      
+            }else{              
+                setMensaje("No hay suficiente stock" )
+            }               
+        }
       
       
       var cantidad = lista.length
+      
 
     
     const [elemtento, setElemento] = useState([])
@@ -79,13 +80,18 @@ const CounterBtn = ({setValorCarrito, prod}) => {
     const seleccionarProducto= (id) =>{
                 
         const found = productosGuardados.find(item => id === item.id )
-        console.log("info found:" + found.id)
+       // console.log("info found:" + found.id)
         setStock(found.available_quantity)      
         setElemento(productosGuardados.find(item => id === item.id ))
-        console.log(elemtento)                 
+       // console.log(elemtento)                 
+        //setItem(found)
+        setEcontrado(found)
+
+        console.log(encontrado)
+        //setItem(found)
     }
      
-
+    var resultadoEncontrado = encontrado
     
     
     return(
@@ -103,6 +109,7 @@ const CounterBtn = ({setValorCarrito, prod}) => {
                         <th className='table-secondary'>Stock</th>
                         <th className='table-secondary'>Imagen</th>
                         <th className='table-secondary'>Seleccionar</th>
+                        <th className='table-secondary'>Detalle</th>
                     </thead>
                     <tbody>                        
                         {
@@ -119,8 +126,10 @@ const CounterBtn = ({setValorCarrito, prod}) => {
                                     <td className='table-secondary'>{item.available_quantity}</td>
                                     <td className='table-secondary'><img className="imgFetch" src={item.thumbnail}/></td>
                                     <td className='table-secondary'>
-                                        <button type="button" class="btn btn-primary" onClick={()=> seleccionarProducto(item.id)}>Seleccionar</button>
+                                        <button type="button" className="btn btn-primary" onClick={()=> seleccionarProducto(item.id)}>Seleccionar</button>
                                     </td>
+                                    <td className='table-secondary'> <Link to={{pathname:`/detail/${item.id}`}} onClick={setItem(resultadoEncontrado)}>Detalle</Link></td> 
+                                    
                                 </tr>
                                 
                                 
@@ -132,7 +141,7 @@ const CounterBtn = ({setValorCarrito, prod}) => {
         
             <h2> Seleccion de items: </h2>
             <p>Stock {elemtento.title}  : {stock}</p>
-            <p>Mensaje: <div class="alert alert-danger" role="alert"> {mensaje} para producto {elemtento.name}, cantidad de productos: {stock}</div></p>
+            <p>Mensaje: <div className="alert alert-danger" role="alert"> {mensaje} para producto {elemtento.name}, cantidad de productos: {stock}</div></p>
             <p>Numero de items: {count}</p>
             <p>Cantidad: {cantidad}</p>
             <button type="button" class="btn btn-primary" onClick={Incrementar}>Incrementar</button>
@@ -173,6 +182,12 @@ export default CounterBtn
 
 
 /*
+
+
+
+
+
+[{id: item.id, nombre: item.title, precio:item.price, stock: item.available_quantity, imagen: item.thumbnail }]
 
   <ul>
                     {

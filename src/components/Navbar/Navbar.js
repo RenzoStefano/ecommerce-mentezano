@@ -3,13 +3,14 @@ import './estilosNavbar.css'
 import CartWidget from '../ButtonCart/CartWidget';
 import CounterBtn from '../CounterBtn/CounterBtn';
 import { useEffect } from 'react/cjs/react.development';
+import {Link} from 'react-router-dom'
 
 const Navbar = (valorCarrito) => {
 
  
 
 
-    console.log("cantidad de items: " + valorCarrito.valorCarrito)
+   // console.log("cantidad de items: " + valorCarrito.valorCarrito)
     
 
     return(
@@ -20,9 +21,10 @@ const Navbar = (valorCarrito) => {
                 </h2>
             </div>
             <div id="idDivButton">
-                <button className='btNav'>TV</button>
+                <button className='btNav'>TV</button>                
                 <button className='btNav'>Laptops</button>
-                <button className='btNav'>Celulares</button>
+                
+                <Link to={'/detail'} className='btNav'>Celulares</Link>
                 <button className='btNav'>Tablets</button>
                <CartWidget valorCarrito ={valorCarrito}/>               
             </div>
