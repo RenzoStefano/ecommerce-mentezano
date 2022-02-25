@@ -21,11 +21,11 @@ const Navbar = (valorCarrito) => {
                 </h2>
             </div>
             <div id="idDivButton">
-                <button className='btNav'>TV</button>                
-                <button className='btNav'>Laptops</button>
+            <Link to={'/itemListContainer/tv'} className='btNav'>TV</Link>
+            <Link to={'/itemListContainer/notebook'} className='btNav'>Notebook</Link>
+            <Link to={'/itemListContainer/celular'} className='btNav'>Celulares</Link>
+            <Link to={'/itemListContainer/tablet'} className='btNav'>Tablet</Link>
                 
-                <Link to={'/detail'} className='btNav'>Celulares</Link>
-                <button className='btNav'>Tablets</button>
                <CartWidget valorCarrito ={valorCarrito}/>               
             </div>
             

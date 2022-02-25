@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import ItemDetail from './components/itemDetail/ItemDetail';
 import fetchItem from './components/FetchItem/fetchItem';
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
 
 function App() {
 
@@ -16,24 +17,59 @@ function App() {
   ]
 
 
-  const [valorCarrito, setValorCarrito] = useState(0)    
+  const [valorCarrito, setValorCarrito] = useState(0)  
+
   const [prod, setProd] = useState([])
+  const [tv, setTv] = useState([])
+  const [notebook, setNotebook] = useState([])
+  const [tablet, setTablet] = useState([])
+
   const [item, setItem] = useState()
 
  //console.log(item.price)
 
+
   useEffect(()=>{      
+
+    fetch('https://api.mercadolibre.com/sites/MLA/search?q=tablet')
+    .then(response => {
+      return response.json()
+    })
+    .then(restablet =>{
+      //console.log(res)
+      setTablet(restablet.results)
+    })
+
+    fetch('https://api.mercadolibre.com/sites/MLA/search?q=notebook')
+    .then(response => {
+      return response.json()
+    })
+    .then(resnotebook =>{
+      //console.log(res)
+      setNotebook(resnotebook.results)
+    })
    
+    
+    fetch('https://api.mercadolibre.com/sites/MLA/search?q=tv')
+    .then(response => {
+      return response.json()
+    })
+    .then(restv =>{
+      //console.log(res)
+      setTv(restv.results)
+    })
+
+
     fetch('https://api.mercadolibre.com/sites/MLA/search?q=iphone')
     .then(response => {
       return response.json()
     })
     .then(res =>{
-      //console.log(res)
+      console.log(res)
       setProd(res.results)
     })
     
-
+ 
     //uso este funcion para devolver el array productos
     //setProd(productos)
   },[])
@@ -43,10 +79,13 @@ function App() {
    <>
       <BrowserRouter>
           <Navbar valorCarrito={valorCarrito} /> 
+          
           <Routes >
-            <Route path='/'/>                
-            <Route path='/detail' element={<CounterBtn setValorCarrito={setValorCarrito} prod = {prod} setItem={setItem} />}/>
-            <Route path='/detail/:categoryId' element={<ItemDetail id={item} />}/>        
+            <Route path='/'/> 
+            <Route path='/itemListContainer/tablet/' element={<ItemListContainer elemento={tablet}/>}/>
+            <Route path='/itemListContainer/notebook/' element={<ItemListContainer elemento={notebook}/>}/>
+            <Route path='/itemListContainer/tv/' element={<ItemListContainer elemento={tv} /> } />
+            <Route path="/itemListContainer/celular"  element={<ItemListContainer elemento={prod} /> } />
           </Routes>
           
       </BrowserRouter>    
@@ -62,5 +101,13 @@ export default App;
        return <li >{cantidad}</li>
      })
     }
+
+
+
+
+<Route path='/detail' element={<CounterBtn setValorCarrito={setValorCarrito} prod = {prod} setItem={setItem} />}/>
+            <Route path='/detail/:categoryId' element={<ItemDetail id={item} />}/>        
+
+
 
 */
