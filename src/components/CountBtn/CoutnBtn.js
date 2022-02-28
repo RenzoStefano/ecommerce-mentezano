@@ -3,9 +3,9 @@ import {useState} from 'react'
 import {Button} from 'reactstrap'
 import {Component} from 'react'
 
-const CoutnBtn = (stock ,{setValorCarrito}) => {
+const CoutnBtn = (props ) => {
 
-    console.log(stock.stock)
+   // console.log(props.stock)
 
     const[count, setCount] = useState(1)  
 
@@ -18,23 +18,20 @@ const CoutnBtn = (stock ,{setValorCarrito}) => {
     }
 
     const Incrementar = () =>{
-        if(count < stock.stock){
+        if(count < props.stock){
             setCount(count +1)
             console.log(count)
         }
     }
 
     
-    const guardarCantidad = () =>{
-        console.log("cantidad en boton: " + count)
-        //setCantidad(count)
-    }
+
     
   return (
     <>
         <Button onClick={Incrementar} >+</Button>
         <Button onClick={Decrementar} >-</Button>
-        <Button onClick={setValorCarrito(count)} >Guardar</Button>
+        <Button onClick={()=>props.setValorCarrito(count)} >Guardar</Button>
         <div>
             seleccionado: {count}   
         </div>
