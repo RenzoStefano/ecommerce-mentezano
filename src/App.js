@@ -26,8 +26,8 @@ function App() {
 
   const [item, setItem] = useState()
 
- //console.log(item.price)
-
+  const [itemCarrito,setItemCarrito] = useState([])
+  
 
   useEffect(()=>{      
 
@@ -65,15 +65,12 @@ function App() {
       return response.json()
     })
     .then(res =>{
-      console.log(res)
+     // console.log(res)
       setProd(res.results)
-    })
-    
- 
-    //uso este funcion para devolver el array productos
-    //setProd(productos)
+    })      
   },[])
 
+ console.log(itemCarrito)
    
   return (
    <>
@@ -82,10 +79,11 @@ function App() {
           
           <Routes >
             <Route path='/'/> 
-            <Route path='/itemListContainer/tablet/' element={<ItemListContainer elemento={tablet}/>}/>
-            <Route path='/itemListContainer/notebook/' element={<ItemListContainer elemento={notebook}/>}/>
-            <Route path='/itemListContainer/tv/' element={<ItemListContainer elemento={tv} /> } />
-            <Route path="/itemListContainer/celular"  element={<ItemListContainer elemento={prod} /> } />
+            <Route path='/detail/:porductId' element={<ItemDetail item={item} />} />
+            <Route path='/itemListContainer/tablet' element={<ItemListContainer elemento={tablet} setItem={setItem} setValorCarrito={setItemCarrito}/>}/>
+            <Route path='/itemListContainer/notebook' element={<ItemListContainer elemento={notebook} setItem={setItem} setValorCarrito={setItemCarrito}/>}/>
+            <Route path='/itemListContainer/tv' element={<ItemListContainer elemento={tv} setItem={setItem} setValorCarrito={setItemCarrito}/> } />
+            <Route path="/itemListContainer/celular"  element={<ItemListContainer elemento={prod} setItem={setItem} setItemCarrito={setItemCarrito}  setValorCarrito={setValorCarrito}/> } />
           </Routes>
           
       </BrowserRouter>    
@@ -94,6 +92,10 @@ function App() {
 }
 
 export default App;
+
+
+
+
 /*
 
 {
